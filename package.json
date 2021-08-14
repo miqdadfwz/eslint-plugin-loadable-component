@@ -1,0 +1,101 @@
+{
+  "name": "eslint-plugin-loadable-component",
+  "version": "0.0.1",
+  "description": "Unofficial lint support for @loadable/component.",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/miqdadfwz/eslint-plugin-loadable-component#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miqdadfwz/eslint-plugin-loadable-component.git"
+  },
+  "engines": {
+    "node": "^12 || >=14"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "format": "pnpm run prettier -- --write",
+    "format:check": "pnpm run prettier --check",
+    "precommit": "lint-staged",
+    "prebuild": "pnpm run -s clean",
+    "preversion": "pnpm run test",
+    "prepare": "pnpm run clean && pnpm run build",
+    "prettier": "prettier \"*.{js,json,ts,yml,yaml,md}\" \"src/**/*\""
+  },
+  "files": [
+    "lib",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "loadable-component"
+  ],
+  "author": {
+    "name": "Miqdad Abdurrahman Fawwaz",
+    "email": "miqdad.fawwaz@gmail.com",
+    "url": "https://miqdad.dev"
+  },
+  "bugs": {
+    "url": "https://github.com/miqdadfwz/eslint-plugin-loadable-component/issues"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@types/eslint": "7.28.0",
+    "@types/estree": "0.0.50",
+    "@types/node": "14.17.5",
+    "@typescript-eslint/parser": "4.28.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "7.30.0",
+    "husky": "7.0.1",
+    "jest": "27.0.6",
+    "lint-staged": "^11.1.2",
+    "prettier": "2.3.2",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.0.4",
+    "typescript": "4.3.5"
+  },
+  "peerDependencies": {
+    "eslint": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "dependencies": {
+    "eslint-traverse": "^1.0.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(src/.*\\.test)\\.ts$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "\\.d\\.ts$",
+      "lib/.*"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
