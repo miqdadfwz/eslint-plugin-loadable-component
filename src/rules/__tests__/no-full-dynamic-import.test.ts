@@ -12,13 +12,13 @@ ruleTester.run('no-full-dynamic-import', rule, {
   valid: [
     {
       code: `
-                import(/* webpackChunkName: "find" */ './index')
+              import(/* webpackChunkName: "find" */ './index')
             `,
       options: [{ loose: false }],
     },
     {
       code: `
-                import(/* webpackChunkName: "find" */ './index')
+              import(/* webpackChunkName: "find" */ './index')
             `,
       options: [{ loose: true }],
     },
@@ -34,8 +34,8 @@ ruleTester.run('no-full-dynamic-import', rule, {
   invalid: [
     {
       code: `
-                var path = 'index';
-                import(/* webpackChunkName: "find" */ path)
+              var path = 'index';
+              import(/* webpackChunkName: "find" */ path)
             `,
       options: [{ loose: false }],
       errors: [
@@ -47,8 +47,8 @@ ruleTester.run('no-full-dynamic-import', rule, {
     },
     {
       code: `
-                var path = 'index';
-                import(/* webpackChunkName: "find" */ path)
+              var path = 'index';
+              import(/* webpackChunkName: "find" */ path)
             `,
       options: [{ loose: true }],
       errors: [

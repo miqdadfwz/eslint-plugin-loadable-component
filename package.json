@@ -16,12 +16,12 @@
     "test": "jest",
     "build": "tsc",
     "clean": "rimraf lib",
-    "format": "pnpm run prettier -- --write",
-    "format:check": "pnpm run prettier --check",
+    "format": "npm run prettier -- --write",
+    "format:check": "npm run prettier --check",
     "precommit": "lint-staged",
-    "prebuild": "pnpm run -s clean",
-    "preversion": "pnpm run test",
-    "prepare": "pnpm run clean && pnpm run build",
+    "prebuild": "npm run -s clean",
+    "preversion": "npm run test",
+    "prepare": "npm run clean && npm run build",
     "prettier": "prettier \"*.{js,json,ts,yml,yaml,md}\" \"src/**/*\""
   },
   "files": [

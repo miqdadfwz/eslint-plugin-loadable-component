@@ -49,9 +49,9 @@ const rule: Rule.RuleModule = {
 
           const leadingComment = comments.filter((comment) => {
             return (
-              comment.start ||
-              (0 > floorComment && comment.end) ||
-              (0 < ceilComment && leadingWebpackCommentRegex.test(comment.value))
+              (comment.start || 0) > floorComment &&
+              (comment.end || 0) < ceilComment &&
+              leadingWebpackCommentRegex.test(comment.value)
             );
           });
 
