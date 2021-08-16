@@ -1,6 +1,7 @@
+import traverse, { SKIP } from 'eslint-traverse';
+import findParent, { NodeExtendable } from '../utils/findParent';
 import type { Rule } from 'eslint';
 import type { Node, CallExpression, Identifier, ObjectExpression, Property, ReturnStatement } from 'estree';
-import findParent, { NodeExtendable } from '../utils/findParent';
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -15,6 +16,7 @@ const rule: Rule.RuleModule = {
   create(context) {
     let importedIdentifierName: string | undefined = '';
     let functionIdentifierName: string | undefined = '';
+    let isFromExportedModule = false;
     let loadableIdentifierName = '';
 
     let complainedJSXNode: Node | null = null;
@@ -24,7 +26,10 @@ const rule: Rule.RuleModule = {
 
     return {
       'Program:exit'() {
-        if (complainedCallExpressionNode && complainedJSXNode) {
+        if (
+          (complainedCallExpressionNode && complainedJSXNode) ||
+          (isFromExportedModule && complainedCallExpressionNode)
+        ) {
           context.report({
             node: complainedCallExpressionNode,
             loc: complainedCallExpressionNode.loc || { line: 0, column: 0 },
@@ -87,6 +92,18 @@ const rule: Rule.RuleModule = {
 
           complainedJSXNode = !hasFallback ? node : null;
         }
+      },
+      ExportDefaultDeclaration(node) {
+        if (node.declaration.type === 'Identifier' && node.declaration.name === loadableIdentifierName) {
+          isFromExportedModule = true;
+        }
+      },
+      ExportNamedDeclaration(node) {
+        traverse(context, node, function (path) {
+          if (path.node.type === 'CallExpression' && path.node.callee.name === importedIdentifierName) {
+            isFromExportedModule = true;
+          }
+        });
       },
     };
   },

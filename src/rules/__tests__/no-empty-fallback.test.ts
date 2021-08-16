@@ -284,6 +284,22 @@ ruleTester.run('no-full-dynamic-import', rule, {
           }
         `,
     },
+    {
+      code: `
+          import loadable from '@loadable/component';
+
+          const OtherComponent = loadable(() => import('./OtherComponent'), { fallback: <div>Loading...</div> });
+
+          export default OtherComponent;
+        `,
+    },
+    {
+      code: `
+          import loadable from '@loadable/component';
+
+          export const OtherComponent = loadable(() => import('./OtherComponent'), { fallback: <div>Loading...</div> });
+        `,
+    },
   ],
   invalid: [
     {
@@ -911,6 +927,66 @@ ruleTester.run('no-full-dynamic-import', rule, {
         }
       `,
 
+      errors: [
+        {
+          message: message,
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: `
+          import loadable from '@loadable/component';
+
+          const OtherComponent = loadable(() => import('./OtherComponent'));
+
+          export default OtherComponent;
+        `,
+      errors: [
+        {
+          message: message,
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: `
+          import loadable from '@loadable/component';
+
+          const OtherComponent = loadable(() => import('./OtherComponent'), {
+            notFallback: true
+          });
+
+          export default OtherComponent;
+        `,
+      errors: [
+        {
+          message: message,
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: `
+          import loadable from '@loadable/component';
+
+          export const OtherComponent = loadable(() => import('./OtherComponent'), {
+            notFallback: true
+          });
+        `,
+      errors: [
+        {
+          message: message,
+          type: 'CallExpression',
+        },
+      ],
+    },
+    {
+      code: `
+          import loadable from '@loadable/component';
+
+          export const OtherComponent = loadable(() => import('./OtherComponent'));
+        `,
       errors: [
         {
           message: message,
