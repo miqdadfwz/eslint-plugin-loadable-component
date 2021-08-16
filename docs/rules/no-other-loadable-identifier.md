@@ -9,7 +9,7 @@ import load from '@loadable/component';
 const OtherComponent = load(() => import('./OtherComponent'));
 ```
 
-The load function is not detected, you have to name it "loadable".
+The load function is not detected by `@loadable/babel-plugin`, you have to name it "loadable".
 
 ```js
 import loadable from '@loadable/component';
@@ -17,8 +17,6 @@ const OtherComponent = loadable(() => import('./OtherComponent'));
 ```
 
 ## Rule Details
-
-The purpose of this rule is to prevent you with this kind of trivial error. It will give you an error message along with a suggestion if you don't use "loadable" keyword.
 
 Examples of **incorrect** code for this rule (notice it comes with capital "L" in the module name):
 
@@ -28,10 +26,30 @@ import Loadable from '@loadable/component';
 export default Loadable(() => import('./OtherComponent'));
 ```
 
+```js
+import baseLoadable from '@loadable/component';
+
+function Loadable(imp) {
+    return baseLoadable(imp);
+}
+
+export default Loadable(() => import('./OtherComponent'));
+```
+
 Examples of **correct** code for this rule:
 
 ```js
 import loadable from '@loadable/component';
+
+export default loadable(() => import('./OtherComponent'));
+```
+
+```js
+import baseLoadable from '@loadable/component';
+
+function loadable(imp) {
+    return baseLoadable(imp);
+}
 
 export default loadable(() => import('./OtherComponent'));
 ```

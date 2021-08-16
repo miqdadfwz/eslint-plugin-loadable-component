@@ -1,24 +1,31 @@
 # eslint-plugin-loadable-component
 
-> Optimize regex literals
+> Unofficial lint support for @loadable/component.
 
 ## Installation
 
 You'll first need to install [ESLint](http://eslint.org):
 
-```
+```bash
 npm i eslint --save-dev
 ```
 
 Next, install `eslint-plugin-loadable-component`:
 
-```
+```bash
 npm install eslint-plugin-loadable-component --save-dev
 ```
 
-## Usage
+Or, with yarn:
 
-Add `loadable-component` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+```bash
+yarn add -D eslint-plugin-loadable-component
+```
+
+## Usage
+> Node: This plugin doesn't have "recommended" rule set at the moment. We are currently still considering of the right rules to be the recommended default set. Pleae make sure to enable rules based on your needs. 
+
+To get started, add `loadable-component` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
@@ -27,7 +34,6 @@ Add `loadable-component` to the plugins section of your `.eslintrc` configuratio
     ]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
@@ -40,6 +46,7 @@ Then configure the rules you want to use under the rules section.
     }
 }
 ```
+
 ## Rules
 
 | Name                       | Type             | Docs                                               |
@@ -47,6 +54,14 @@ Then configure the rules you want to use under the rules section.
 | no-empty-fallback          | Recommendation   | [Link](./docs/rules/no-empty-fallback.md)          |
 | no-full-dynamic-import     | Recommendation   | [Link](./docs/rules/no-full-dynamic-import.md)     |
 | no-other-loadable-idenfier | Possible Error   | [Link](./docs/rules/no-other-loadable-idenfier.md) |
+
+## Disabling Rule
+You can disable certain rule by using ESLint directive syntax (marked with #) to hint ESLint to disable in specific line or entire file. You can find a list of ESLint directives [here](https://eslint.org/docs/2.13.1/user-guide/configuring#disabling-rules-with-inline-comments).
+
+```js
+# eslint-disable-next-line #no-empty-fallback
+loadable(() => import('./foo.js'));
+```
 
 ## License
 
