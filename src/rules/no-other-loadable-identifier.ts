@@ -30,12 +30,12 @@ const rule: Rule.RuleModule = {
 
               const parentFunctionNode = findParent(callExpressionNode as NodeExtendable, (p) => {
                 const isFunctionExpression =
-                  p.type === 'FunctionExpression' && p.parent.parent.parent.type === 'Program';
+                  p.type === 'FunctionExpression' && p.parent?.parent?.parent?.type === 'Program';
 
-                const isFunctionDeclaration = p.type === 'FunctionDeclaration' && p.parent.type === 'Program';
+                const isFunctionDeclaration = p.type === 'FunctionDeclaration' && p.parent?.type === 'Program';
 
                 const isArrowFunctionExpression =
-                  p.type === 'ArrowFunctionExpression' && p.parent.parent.parent.type === 'Program';
+                  p.type === 'ArrowFunctionExpression' && p.parent?.parent?.parent?.type === 'Program';
 
                 return isFunctionExpression || isFunctionDeclaration || isArrowFunctionExpression;
               });

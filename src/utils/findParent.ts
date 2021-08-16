@@ -1,6 +1,6 @@
 import { Node } from 'estree';
 
-export type NodeExtendable = Node & { parent: NodeExtendable };
+export type NodeExtendable = Node & { parent: NodeExtendable | null };
 
 /**
  * Find node parent based on certain condition
