@@ -3,6 +3,8 @@
 > Unofficial lint support for @loadable/component.
 
 [![Test CI](https://github.com/miqdadfwz/eslint-plugin-loadable-component/workflows/Unit/badge.svg)](https://github.com/miqdadfwz/eslint-plugin-loadable-component/actions)
+[![codecov](https://codecov.io/gh/miqdadfwz/eslint-plugin-loadable-component/branch/master/graph/badge.svg?token=I5EJ2WS10M)](https://codecov.io/gh/miqdadfwz/eslint-plugin-loadable-component)
+[![npm version](https://badge.fury.io/js/eslint-plugin-loadable-component.svg)](https://badge.fury.io/js/eslint-plugin-loadable-component)
 
 ## Installation
 
@@ -52,8 +54,8 @@ Then configure the rules you want to use under the rules section.
 
 | Name                       |      Type      |                                               Docs |
 | -------------------------- | :------------: | -------------------------------------------------: |
-| no-empty-fallback          | Recommendation |          [Link](./docs/rules/no-empty-fallback.md) |
-| no-full-dynamic-import     | Recommendation |     [Link](./docs/rules/no-full-dynamic-import.md) |
+| no-empty-fallback          | Best Practices |          [Link](./docs/rules/no-empty-fallback.md) |
+| no-full-dynamic-import     | Best Practices |     [Link](./docs/rules/no-full-dynamic-import.md) |
 | no-other-loadable-idenfier | Possible Error | [Link](./docs/rules/no-other-loadable-idenfier.md) |
 
 ## Disabling Rule
