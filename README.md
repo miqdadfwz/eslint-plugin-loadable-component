@@ -2,6 +2,8 @@
 
 > Unofficial lint support for @loadable/component.
 
+[![Test CI](https://github.com/miqdadfwz/eslint-plugin-loadable-component/workflows/Unit/badge.svg)](https://github.com/miqdadfwz/eslint-plugin-loadable-component/actions)
+
 ## Installation
 
 You'll first need to install [ESLint](http://eslint.org):
@@ -59,7 +61,7 @@ Then configure the rules you want to use under the rules section.
 You can disable certain rule by using ESLint directive syntax (marked with #) to hint ESLint to disable in specific line or entire file. You can find a list of ESLint directives [here](https://eslint.org/docs/2.13.1/user-guide/configuring#disabling-rules-with-inline-comments).
 
 ```js
-# eslint-disable-next-line #no-empty-fallback
+# eslint-disable-next-line no-empty-fallback
 loadable(() => import('./foo.js'));
 ```
 

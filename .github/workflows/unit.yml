@@ -1,4 +1,4 @@
-name: Unit Test Rules
+name: Unit
 
 on:
   push:
