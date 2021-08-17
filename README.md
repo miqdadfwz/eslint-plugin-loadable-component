@@ -28,7 +28,7 @@ yarn add -D eslint-plugin-loadable-component
 
 ## Usage
 
-> Node: This plugin doesn't have "recommended" rule set at the moment. We are currently still considering of the right rules to be the recommended default set. Pleae make sure to enable rules based on your needs.
+> Note: This plugin doesn't have "recommended" rule set at the moment. We are currently still considering of the right rules to be the recommended default set. Please make sure to enable rules based on your needs.
 
 To get started, add `loadable-component` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
