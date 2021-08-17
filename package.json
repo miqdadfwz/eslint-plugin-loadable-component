@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-loadable-component",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Unofficial lint support for @loadable/component.",
   "main": "lib/index.js",
   "license": "MIT",
