@@ -1,4 +1,4 @@
-import traverse, { SKIP } from 'eslint-traverse';
+import traverse, { STOP } from 'eslint-traverse';
 import findParent, { NodeExtendable } from '../utils/findParent';
 import type { Rule } from 'eslint';
 import type { Node, CallExpression, Identifier, ObjectExpression, Property, ReturnStatement } from 'estree';
@@ -96,12 +96,14 @@ const rule: Rule.RuleModule = {
       ExportDefaultDeclaration(node) {
         if (node.declaration.type === 'Identifier' && node.declaration.name === loadableIdentifierName) {
           isFromExportedModule = true;
+          return STOP;
         }
       },
       ExportNamedDeclaration(node) {
         traverse(context, node, function (path) {
           if (path.node.type === 'CallExpression' && path.node.callee.name === importedIdentifierName) {
             isFromExportedModule = true;
+            return STOP;
           }
         });
       },

@@ -66,27 +66,21 @@ const rule: Rule.RuleModule = {
           }
         });
       },
-      VariableDeclaration(node) {
+      ImportExpression(node) {
+        const source = node.source;
+        const isIdentifier = source.type === 'Identifier';
+        const isTemplateLiteral = source.type === 'TemplateLiteral';
+        const argumentIdentifier =
+          (<Identifier>source).name || (<Identifier>(<TemplateLiteral>source).expressions?.[0])?.name;
+
         const [root] = context.getAncestors();
 
         traverse(context, root, function (path) {
-          const n: Node = path.node;
+          const variableIdentifier = (<Identifier>path.node.declarations?.[0]?.id)?.name;
 
-          if (n.type === 'ImportExpression') {
-            const source = n.source;
-            const isIdentifier = source.type === 'Identifier';
-            const isTemplateLiteral = source.type === 'TemplateLiteral';
-
-            if (isIdentifier || isTemplateLiteral) {
-              const variableIdentifier = (<Identifier>node.declarations?.[0]?.id)?.name;
-              const argumentIdentifier =
-                (<Identifier>source).name || (<Identifier>(<TemplateLiteral>source).expressions?.[0])?.name;
-
-              if (variableIdentifier === argumentIdentifier) {
-                forbiddenNodes.push(n);
-                return STOP;
-              }
-            }
+          if ((isIdentifier || isTemplateLiteral) && variableIdentifier === argumentIdentifier) {
+            forbiddenNodes.push(node);
+            return STOP;
           }
         });
       },
