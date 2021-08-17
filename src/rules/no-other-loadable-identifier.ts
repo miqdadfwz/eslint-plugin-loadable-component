@@ -11,7 +11,7 @@ const rule: Rule.RuleModule = {
     docs: {
       url: 'https://github.com/miqdadfwz/eslint-plugin-loadable-component/blob/master/docs/rules/no-other-loadable-identifier.md',
       category: 'Possible Errors',
-      description: 'Disallow other "loadable" keyword',
+      description: 'Disallow other keyword than "loadable"',
     },
   },
   create(context) {

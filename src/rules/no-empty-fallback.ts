@@ -8,7 +8,7 @@ const rule: Rule.RuleModule = {
     type: 'suggestion',
     schema: [],
     docs: {
-      description: 'Recommend to use fallback option.',
+      description: 'Prefer to use fallback option.',
       url: 'https://github.com/miqdadfwz/eslint-plugin-loadable-component/blob/master/docs/rules/no-empty-fallback.md',
       category: 'Best Practices',
     },
