@@ -4,7 +4,6 @@
 
 [![Test CI](https://github.com/miqdadfwz/eslint-plugin-loadable-component/workflows/Unit/badge.svg)](https://github.com/miqdadfwz/eslint-plugin-loadable-component/actions)
 [![codecov](https://codecov.io/gh/miqdadfwz/eslint-plugin-loadable-component/branch/master/graph/badge.svg?token=I5EJ2WS10M)](https://codecov.io/gh/miqdadfwz/eslint-plugin-loadable-component)
-[![npm version](https://badge.fury.io/js/eslint-plugin-loadable-component.svg)](https://badge.fury.io/js/eslint-plugin-loadable-component)
 
 ## Installation
 
