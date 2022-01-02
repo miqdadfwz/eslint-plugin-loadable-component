@@ -6,7 +6,16 @@ import type { Node, CallExpression, Identifier, ObjectExpression, Property, Retu
 const rule: Rule.RuleModule = {
   meta: {
     type: 'suggestion',
-    schema: [],
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          importDeclaration: {
+            type: 'string',
+          },
+        },
+      },
+    ],
     docs: {
       description: 'Prefer to use fallback option.',
       url: 'https://github.com/miqdadfwz/eslint-plugin-loadable-component/blob/master/docs/rules/no-empty-fallback.md',
@@ -22,7 +31,8 @@ const rule: Rule.RuleModule = {
     let complainedJSXNode: Node | null = null;
     let complainedCallExpressionNode: CallExpression | null = null;
 
-    const importedSource = '@loadable/component';
+    const importedSource =
+      context.options.find((option) => option.importDeclaration)?.importDeclaration ?? '@loadable/component';
 
     return {
       'Program:exit'() {

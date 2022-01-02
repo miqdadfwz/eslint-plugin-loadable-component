@@ -300,6 +300,14 @@ ruleTester.run('no-full-dynamic-import', rule, {
           export const OtherComponent = loadable(() => import('./OtherComponent'), { fallback: <div>Loading...</div> });
         `,
     },
+    {
+      code: `
+          import loadable from '@loadable-v2/component';
+
+          export const OtherComponent = loadable(() => import('./OtherComponent'), { fallback: <div>Loading...</div> });
+        `,
+      options: [{ importDeclaration: '@loadable-v2/component' }],
+    },
   ],
   invalid: [
     {
@@ -993,6 +1001,20 @@ ruleTester.run('no-full-dynamic-import', rule, {
           type: 'CallExpression',
         },
       ],
+    },
+    {
+      code: `
+          import loadable from '@loadable-v2/component';
+
+          export const OtherComponent = loadable(() => import('./OtherComponent'));
+        `,
+      errors: [
+        {
+          message: message,
+          type: 'CallExpression',
+        },
+      ],
+      options: [{ importDeclaration: '@loadable-v2/component' }],
     },
   ],
 });

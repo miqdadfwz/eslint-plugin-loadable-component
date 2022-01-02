@@ -7,7 +7,16 @@ import type { Node, ImportDeclaration, Function, CallExpression, Identifier } fr
 const rule: Rule.RuleModule = {
   meta: {
     type: 'problem',
-    schema: [],
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          importDeclaration: {
+            type: 'string',
+          },
+        },
+      },
+    ],
     docs: {
       url: 'https://github.com/miqdadfwz/eslint-plugin-loadable-component/blob/master/docs/rules/no-other-loadable-identifier.md',
       category: 'Possible Errors',
@@ -64,7 +73,9 @@ const rule: Rule.RuleModule = {
         }
       },
       ImportDeclaration(node: ImportDeclaration) {
-        const importDeclarationValue = '@loadable/component';
+        const importDeclarationValue =
+          context.options.find((option) => option.importDeclaration)?.importDeclaration ?? '@loadable/component';
+
         const importedSourceName = node.source.value;
         const isImportValueExists = importedSourceName === importDeclarationValue;
 
