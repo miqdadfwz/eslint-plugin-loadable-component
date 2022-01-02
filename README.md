@@ -4,7 +4,6 @@
 
 [![Test CI](https://github.com/miqdadfwz/eslint-plugin-loadable-component/workflows/Unit/badge.svg)](https://github.com/miqdadfwz/eslint-plugin-loadable-component/actions)
 [![codecov](https://codecov.io/gh/miqdadfwz/eslint-plugin-loadable-component/branch/master/graph/badge.svg?token=I5EJ2WS10M)](https://codecov.io/gh/miqdadfwz/eslint-plugin-loadable-component)
-[![npm version](https://badge.fury.io/js/eslint-plugin-loadable-component.svg)](https://badge.fury.io/js/eslint-plugin-loadable-component)
 
 ## Installation
 
@@ -28,7 +27,7 @@ yarn add -D eslint-plugin-loadable-component
 
 ## Usage
 
-> Node: This plugin doesn't have "recommended" rule set at the moment. We are currently still considering of the right rules to be the recommended default set. Pleae make sure to enable rules based on your needs.
+> Note: This plugin doesn't have "recommended" rule set at the moment. We are currently still considering of the right rules to be the recommended default set. Please make sure to enable rules based on your needs.
 
 To get started, add `loadable-component` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
