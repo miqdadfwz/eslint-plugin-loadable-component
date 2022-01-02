@@ -162,6 +162,16 @@ ruleTester.run('no-other-loadable-identifier', rule, {
         export default loadable(() => import('./OtherComponent'));
       `,
     },
+    {
+      code: `
+        import baseLoadable from '@loadable-v2/component';
+
+        const loadable = func => baseLoadable(func, { fallback: <div>Loading...</div> });
+
+        export default loadable(() => import('./OtherComponent'));
+      `,
+      options: [{ importDeclaration: '@loadable-v2/component' }],
+    },
   ],
   invalid: [
     {
@@ -609,6 +619,30 @@ ruleTester.run('no-other-loadable-identifier', rule, {
           type: 'CallExpression',
         },
       ],
+    },
+    {
+      code: `
+        import baseLoadable from '@loadable-v2/component';
+
+        const Loadable = func => {
+          const NestedLoadable = () => {
+            const NestedNestedLoadable = () => baseLoadable(func, { fallback: <div>Loading...</div> });
+            NestedNestedLoadable();
+          }
+
+          NestedLoadable();
+        };
+
+        export default Loadable(() => import('./OtherComponent'));
+      `,
+
+      errors: [
+        {
+          message: printMsg('Loadable'),
+          type: 'CallExpression',
+        },
+      ],
+      options: [{ importDeclaration: '@loadable-v2/component' }],
     },
   ],
 });
